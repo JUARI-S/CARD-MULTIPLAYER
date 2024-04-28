@@ -1,0 +1,66 @@
+html,body {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+
+.base-header {
+    background-color: #9c803a;
+    height: 6vh;
+    display: flex;
+    font-size: large;
+    position: relative;
+    padding: 1vh;
+    align-content: center;
+}
+
+.game-heading-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Maintain aspect ratio and cover entire space */
+}
+
+.game-heading {
+    color: white;
+    left: 5%;
+    padding: 2vh;
+    align-content: center;
+    font-size: xx-large;
+}
+
+.auth {
+    display: flex;
+    align-content: center;
+    right: 2%;
+    padding: 1vh;
+    margin-left: auto;
+    margin-right: 2%;
+}
+
+.auth-button {
+    background-color: #dcab24;
+    color: #fff;
+    padding: 0.5vh 1vw;
+    justify-content: center;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-left: 5%;
+    display: inline-block;
+}
+
+.auth-button:hover {
+    background-color: #bc921f;
+}
+
+.avatar {
+    vertical-align: middle;
+    border-radius: 50%;
+}
+
+.user-name {
+    color: #fff;
+    padding: 0.5vh 1vw;
+    justify-content: center;
+    text-decoration: none;
+}
+

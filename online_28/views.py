@@ -1,12 +1,10 @@
-from django.shortcuts import render
-
-# Create your views here.
+from django.shortcuts import render, redirect
 
 
 def index(request):
-    context={
-        "amit":"good",
-        "adi":"bad",
-        "abhi":"soosso"
-    }
-    return render(request,'dashboard.html',context)
+    if not request.user.is_authenticated:
+        return redirect('/auth')
+    return render(request, 'online_28/index.html')
+
+def rules(request):
+    return render(request, 'online_28/rules.html')

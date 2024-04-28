@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_title %}Card Games{% endblock %}
+
+{% comment %} {% block meta %}{% endblock %} {% endcomment %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+{% block body %}
+    <div class="home_body" style="background-image: url({% static 'images/home_bg.jpg' %});">
+        {% for game in games %}
+            <div class="game-panel">
+                <div class="game-title"><b>{{ game }}</b></div>
+                <div class="game-buttons">
+                    <a href="online_28/rules" class="game-rule">Rules</a>
+                    <a href="online_28" class="play-game">Play</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block js %}{% endblock js %}

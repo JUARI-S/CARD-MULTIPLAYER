@@ -1,4 +1,8 @@
 venv/
 card_games/__pycache__/
+authentication/__pycache__/
+authentication/migrations/__pycache__/
 online_28/__pycache__/
 online_28/migrations/__pycache__/
+home/__pycache__/
+home/migrations/__pycache__/

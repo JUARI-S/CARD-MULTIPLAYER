@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_title %}Authentication{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/authentication/index.css' %}">
+{% endblock %}
+
+{% block body %}
+    <div class="auth-body">
+        <div class="auth-panel">
+            <div class="tabs">
+                <div class="tab active" onclick="showTab('login')">Login</div>
+                <div class="tab" onclick="showTab('register')">Register</div>
+            </div>
+            <div id="loginForm" class="form-group">
+                <form>
+                    <div>
+                        <input type="text" id="username" name="username" placeholder="Username">
+                    </div>
+                    <div>
+                        <input type="password" id="password" name="password" placeholder="Password">
+                    </div>
+                    <button type="submit">Login</button>
+                </form>
+            </div>
+            <div id="registerForm" class="form-group" style="display: none;">
+                <form>
+                    <div>
+                        <input type="text" id="regUsername" name="regUsername" placeholder="Username">
+                    </div>
+                    <div>
+                        <input type="password" id="regPassword" name="regPassword" placeholder="Password">
+                    </div>
+                    <div>
+                        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password">
+                    </div>
+                    <button type="submit">Register</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/authentication/index.js' %}"></script>
+{% endblock js %}

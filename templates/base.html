@@ -1,0 +1,45 @@
+{% load static %}
+
+<!doctype html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title>{% block page_title %}{% endblock %}</title>
+  <meta name="description" content="{% block meta_description %}{% endblock %}">
+  <meta name="author" content="{% block meta_author %}{% endblock %}">
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <link rel="icon" type="image/png" href="{% static 'images/spade.jpg' %}">
+
+  {% block meta %}{% endblock %}
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
+  {% block css %}{% endblock %}
+</head>
+
+<body>
+
+  <!-- Common Header -->
+  <div class="base-header">
+    <div class="game-heading-img">
+      <img src="{% static 'images/spade.jpg' %}"/>
+    </div>
+    <div class="game-heading">Card Games</div>
+    <div class="auth">
+      {% if request.user.is_authenticated %}
+        <img src="{% static 'images/avatar.png' %}" class="avatar">
+        <a href="profile" class="user-name">
+          {{ request.user.username }}
+        </a>
+        <a href="/auth/logout" class="auth-button">Logout</a>
+      {% else %}
+        <a href="/auth" class="auth-button">Login</a>
+      {% endif %}
+    </div>
+  </div>
+
+  {% block body %}{% endblock %}
+  <!-- JavaScript at the bottom for fast page loading -->
+  {% block js %}{% endblock js %}
+  <!-- end scripts -->
+</body>
+</html>
