@@ -15,7 +15,8 @@
                 <div class="tab" onclick="showTab('register')">Register</div>
             </div>
             <div id="loginForm" class="form-group">
-                <form>
+                <h1>Welcome Back!</h1>
+                <form action="/auth/login" method="post">{% csrf_token %}
                     <div>
                         <input type="text" id="username" name="username" placeholder="Username">
                     </div>
@@ -26,7 +27,8 @@
                 </form>
             </div>
             <div id="registerForm" class="form-group" style="display: none;">
-                <form>
+                <h1>Register Here!</h1>
+                <form action="/auth/register" method="post">{% csrf_token %}
                     <div>
                         <input type="text" id="regUsername" name="regUsername" placeholder="Username">
                     </div>

@@ -12,7 +12,8 @@
     width: 30%;
     padding: 2%;
     border-radius: 10px;
-    font-size: x-large
+    font-size: x-large;
+    overflow: hidden;
 }
 .tabs {
     cursor: pointer;
@@ -28,16 +29,19 @@
     flex: 1;
     background-color: #dcab24;
     text-align: center;
-    padding: 1%;
+    padding: 2%;
     border-radius: 10px;
 }
 .active {
     background-color: #bc921f;
 }
 .form-group {
-    display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
+}
+h1 {
+  text-align: center;
 }
 .form-group input {
     padding: 2%;
@@ -45,11 +49,19 @@
     border: 1px solid #ccc;
     text-align: center;
     font-size: x-large;
+    width: 100%;
+    margin: 1.5%;
+    outline: none;
 }
 .form-group button {
-    padding: 10px;
+    padding: 2%;
     border: none;
     border-radius: 5px;
     background-color: #007bff;
     color: #fff;
+    text-align: center;
+    font-size: x-large;
+    margin: 1.5%;
+    width: 100%;
+    cursor: pointer;
 }
