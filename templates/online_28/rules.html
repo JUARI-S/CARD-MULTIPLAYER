@@ -3,9 +3,46 @@
 
 {% block page_title %}Online 28 Rules{% endblock %}
 
-{% block css %}{% endblock %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/online_28/rules.css' %}">
+{% endblock %}
 
 {% block body %}
+<div class="online-28-rules-div">
+    <div class="online-28-rules-title">
+        Online 28 Rules 
+    </div>
+    <div class="online-28-rules-window">
+        <ol>
+            <li>Game of 4 players</li>
+            <li>Point System - 
+                <table>
+                    <tr>
+                        <th>Card</th>
+                        <th>Points</th>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>A, 10</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>J</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>K, Q, 7, 8</td>
+                        <td>0</td>
+                    </tr>
+                </table>
+            </li>
+            <li>Rest of the rules</li>
+        </ol>
+    </div>
+</div>
 {% endblock %}
 
 {% block js %}{% endblock js %}

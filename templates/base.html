@@ -20,9 +20,9 @@
 
   <!-- Common Header -->
   <div class="base-header">
-    <div class="game-heading-img">
+    <a class="game-heading-img" href="/">
       <img src="{% static 'images/spade.jpg' %}"/>
-    </div>
+    </a>
     <div class="game-heading">Card Games</div>
     <div class="auth">
       {% if request.user.is_authenticated %}

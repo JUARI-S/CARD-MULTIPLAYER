@@ -1,0 +1,38 @@
+.online-28-rules-div {
+    background-color: #6f5517;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+.online-28-rules-title {
+    display: flex;
+    font-size: xx-large;
+    color: #ffffffcb;
+    text-align: center;
+    flex-direction: column;
+    padding: 1%;
+}
+.online-28-rules-window {
+    background-color: #ffffff83;
+    overflow: hidden;
+    position: absolute;
+    left: 24%;
+    top: 10%;
+    width: 50%;
+    height: 70%;
+    overflow: auto;
+    padding: 0.5% 2%;
+    font-size: x-large;
+}
+table {
+    width: 50%; /* Set table width to 100% of its container */
+    border-collapse: collapse; /* Collapse borders for a cleaner look */
+}
+th, td {
+    border: 1px solid black; /* Add borders to cells */
+    text-align: center; /* Align text to the left within cells */
+    font-size: large;
+}
+th {
+    background-color: #f2f2f2; /* Light gray background for header cells */
+}
