@@ -1,4 +1,4 @@
-.home_body {
+.home-body {
     width: 100%;
     height: 92%;
     background-size: cover; /* Adjust background size */
@@ -9,10 +9,15 @@
 }
 
 .game-panel {
+    background-size: cover; /* Adjust background size */
+    background-position: center; /* Center the background image */
+    display: flex;
+    justify-content: center; /* Aligns items horizontally in the center */
+    align-items: center; /* Aligns items vertically in the center */
     background-color: #9c803a;
     color: white;
-    width: 18%;
-    height: 18%;
+    width: 25%;
+    height: 25%;
     border-radius: 10px;
     padding: 1%;
     font-size: xx-large;

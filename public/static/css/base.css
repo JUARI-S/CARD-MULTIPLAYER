@@ -2,6 +2,10 @@ html,body {
     height: 100%;
     margin: 0;
     overflow: hidden;
+    background-size: cover; /* Adjust background size */
+    background-position: center; /* Center the background image */
+    justify-content: center; /* Aligns items horizontally in the center */
+    align-items: center; /* Aligns items vertically in the center */
 }
 
 .base-header {

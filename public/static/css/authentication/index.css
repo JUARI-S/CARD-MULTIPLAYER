@@ -1,5 +1,4 @@
 .auth-body {
-    background-color: #6f5517;
     height: 100%;
     width: 100%;
     display: flex;
@@ -8,7 +7,7 @@
 }
 
 .auth-panel {
-    background-color: #ffffffcd;
+    background-color: #ffffff83;
     width: 30%;
     padding: 2%;
     border-radius: 10px;
@@ -49,7 +48,7 @@ h1 {
     border: 1px solid #ccc;
     text-align: center;
     font-size: x-large;
-    width: 100%;
+    width: 92%;
     margin: 1.5%;
     outline: none;
 }
@@ -57,11 +56,11 @@ h1 {
     padding: 2%;
     border: none;
     border-radius: 5px;
-    background-color: #007bff;
+    background-color: #dcab24;
     color: #fff;
     text-align: center;
     font-size: x-large;
     margin: 1.5%;
-    width: 100%;
+    width: 96%;
     cursor: pointer;
 }

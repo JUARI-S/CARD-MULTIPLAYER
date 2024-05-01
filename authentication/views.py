@@ -8,6 +8,8 @@ from django.contrib import messages
 Authentication page
 """
 def authentication(request):
+    if request.user.is_authenticated:
+        return redirect("/")
     return render(request, "authentication/index.html")
 
 

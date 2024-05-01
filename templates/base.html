@@ -16,7 +16,7 @@
   {% block css %}{% endblock %}
 </head>
 
-<body>
+<body style="background-image: url({% static 'images/game_bg.jpg' %});">
 
   <!-- Common Header -->
   <div class="base-header">
@@ -27,7 +27,7 @@
     <div class="auth">
       {% if request.user.is_authenticated %}
         <img src="{% static 'images/avatar.png' %}" class="avatar">
-        <a href="profile" class="user-name">
+        <a href="/profile" class="user-name">
           {{ request.user.username }}
         </a>
         <a href="/auth/logout" class="auth-button">Logout</a>

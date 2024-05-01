@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 GAMES = ["Online 28"]
 
@@ -15,4 +15,6 @@ def home(request):
 Views for Profile page
 """
 def profile(request):
-    return render(request, "home/profile.html")
+    if request.user.is_authenticated:
+        return render(request, "home/profile.html")
+    return redirect("/")

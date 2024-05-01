@@ -1,0 +1,71 @@
+.online-28-div {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+.online-28-title {
+    display: flex;
+    font-size: xx-large;
+    color: #ffffffcb;
+    text-align: center;
+    flex-direction: column;
+    padding: 1%;
+}
+.online-28-room-window {
+    background-color: #ffffff83;
+    overflow: hidden;
+    position: absolute;
+    left: 24%;
+    top: 10%;
+    width: 50%;
+    height: 70%;
+    padding: 0.5% 2%;
+    font-size: x-large;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center; /* Horizontally center items */
+    align-items: center; /* Vertically center items */
+}
+.online-28-room-form {
+    width: 40%;
+    height: 100%;
+    display: flex;
+    flex-direction: column; /* Arrange items vertically */
+    justify-content: center; /* Horizontally center items */
+    align-items: center; /* Vertically center items */
+}
+.online-28-room-div {
+    margin-top: 2%;
+    width: 100%;
+    text-align: center;
+}
+#online-28-room-error {
+    margin-top: 2%;
+    width: 100%;
+    text-align: center;
+    background-color: rgb(219, 58, 58);
+    color: white;
+    display: none;
+}
+.online-28-room-div input {
+    padding: 2%;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    text-align: center;
+    font-size: x-large;
+    width: 92%;
+    margin: 1.5%;
+    outline: none;
+}
+.online-28-room-div button {
+    padding: 2%;
+    border: none;
+    border-radius: 5px;
+    background-color: #dcab24;
+    color: #fff;
+    text-align: center;
+    font-size: x-large;
+    margin: 1.5%;
+    width: 97%;
+    cursor: pointer;
+}

@@ -6,13 +6,13 @@
 {% comment %} {% block meta %}{% endblock %} {% endcomment %}
 
 {% block css %}
-<link rel="stylesheet" href="{% static 'css/home.css' %}">
+<link rel="stylesheet" href="{% static 'css/home/home.css' %}">
 {% endblock %}
 
 {% block body %}
-    <div class="home_body" style="background-image: url({% static 'images/home_bg.jpg' %});">
+    <div class="home-body">
         {% for game in games %}
-            <div class="game-panel">
+            <div class="game-panel" style="background-image: url({% static 'images/home_bg.jpg' %});">
                 <div class="game-title"><b>{{ game }}</b></div>
                 <div class="game-buttons">
                     <a href="online_28/rules" class="game-rule">Rules</a>

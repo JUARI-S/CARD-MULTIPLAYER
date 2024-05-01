@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_title %}Card Games{% endblock %}
+
+{% comment %} {% block meta %}{% endblock %} {% endcomment %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/home/profile.css' %}">
+{% endblock %}
+
+{% block body %}
+    <div class="profile-body">
+        <div class="profile-window">
+            {{ request.user.username }}
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}{% endblock js %}

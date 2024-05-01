@@ -1,5 +1,4 @@
 .online-28-rules-div {
-    background-color: #6f5517;
     width: 100%;
     height: 100%;
     position: relative;
@@ -23,6 +22,7 @@
     overflow: auto;
     padding: 0.5% 2%;
     font-size: x-large;
+    border-radius: 10px;
 }
 table {
     width: 50%; /* Set table width to 100% of its container */

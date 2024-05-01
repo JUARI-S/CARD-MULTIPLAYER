@@ -3,9 +3,33 @@
 
 {% block page_title %}Online 28{% endblock %}
 
-{% block css %}{% endblock %}
-
-{% block body %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/online_28/index.css' %}">
 {% endblock %}
 
-{% block js %}{% endblock js %}
+{% block body %}
+<div class="online-28-div">
+    <div class="online-28-title">
+        Online 28 
+    </div>
+    <div class="online-28-room-window">
+        <div class="online-28-room-form">
+            <div id="online-28-room-error">ERROR MESSAGE</div>
+            <div class="online-28-room-div">
+                <input type="text" id="room_id" name="room_id" placeholder="Room ID">
+            </div>
+            <div class="online-28-room-div">
+                <button type="button" onclick="join_room()">Join&nbsp;Room</button>
+            </div>
+            <div class="online-28-room-div">--------- OR ---------</div>
+            <div class="online-28-room-div">
+                <button type="button" onclick="create_room()">Create&nbsp;Room</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/online_28/index.js' %}"></script>
+{% endblock js %}
