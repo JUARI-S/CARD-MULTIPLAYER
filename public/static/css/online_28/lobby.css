@@ -1,0 +1,84 @@
+.online-28-lobby-div {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+.online-28-lobby-window {
+    background-color: #ffffff83;
+    overflow: hidden;
+    position: absolute;
+    left: 24%;
+    top: 10%;
+    width: 50%;
+    height: 60%;
+    padding: 2%;
+    font-size: x-large;
+    border-radius: 10px;
+    display: grid;
+    place-items: center; /* Horizontally and vertically center */
+}
+.online-28-lobby-room-id-pannel {
+    display: flex;
+    padding: 3%;
+    width: 70%;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+}
+.online-28-lobby-room-id {
+    width: 100%;
+    text-align: center;
+}
+.online-28-lobby-players {
+    width: 80%;
+    background-color: #f0f0f0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two columns */
+    grid-template-rows: repeat(2, 1fr); /* Two rows */
+    gap: 2%; /* Adjust the gap between grid items */
+    padding: 1%;
+    border-radius: 10px;
+}
+.online-28-lobby-players-team {
+    text-align: center;
+    padding: 2.5%;
+    margin: 2%;
+}
+.online-28-lobby-players-team-a {
+    background-color: #cecece;
+    text-align: center;
+    padding: 2.5%;
+    margin: 2%;
+    border-radius: 10px;
+}
+.online-28-lobby-players-team-b {
+    background-color: #cecece;
+    text-align: center;
+    padding: 2.5%;
+    margin: 2%;
+    border-radius: 10px;
+}
+#online-28-lobby-error {
+    width: 60%;
+    text-align: center;
+    background-color: rgb(219, 58, 58);
+    color: white;
+    display: none;
+    padding: 0.5%;
+}
+.online-28-lobby-actions {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+}
+.online-28-lobby-actions button {
+    padding: 2%;
+    border: none;
+    border-radius: 5px;
+    background-color: #dcab24;
+    color: #fff;
+    text-align: center;
+    font-size: x-large;
+    margin: 1.5%;
+    width: 97%;
+    cursor: pointer;
+}

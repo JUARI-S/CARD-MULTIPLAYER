@@ -4,12 +4,43 @@
 {% block page_title %}Online 28{% endblock %}
 
 {% block css %}
-{% comment %} <link rel="stylesheet" href="{% static 'css/online_28/lobby.css' %}"> {% endcomment %}
+<link rel="stylesheet" href="{% static 'css/online_28/lobby.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 {% endblock %}
 
 {% block body %}
+<div class="online-28-lobby-div">
+    <div class="online-28-lobby-window">
+        <div class="online-28-lobby-room-id-pannel">
+            <div class="online-28-lobby-room-id">ROOM ID : {{ room_id }}</div>
+        </div>
+        <div class="online-28-lobby-players">
+            <div class="online-28-lobby-players-team"> Team A </div>
+            <div class="online-28-lobby-players-team"> Team B </div>
+            <div class="online-28-lobby-players-team-a"> -- </div>
+            <div class="online-28-lobby-players-team-b"> -- </div>
+            <div class="online-28-lobby-players-team-a"> -- </div>
+            <div class="online-28-lobby-players-team-b"> -- </div>
+        </div>
+        <div id="online-28-lobby-error">ERROR MESSAGE</div>
+        <div class="online-28-lobby-actions">
+            {% if owner %}
+                <button type="button" onclick="delete_room()" style="background-color: #f14c23">Delete&nbsp;Room</button>
+                <button type="button" onclick="play()">Play</button>
+            {% else %}
+                <button type="button" onclick="leave_room()">Leave&nbsp;Room</button>
+                <button type="button" onclick="change_team()" style="background-color: #248fdc">Change&nbsp;Team</button>
+            {% endif %}
+        </div>
+    </div>
+</div>
 {% endblock %}
 
 {% block js %}
-{% comment %} <script src="{% static 'js/online_28/lobby.js' %}"></script> {% endcomment %}
+<script type="text/javascript">
+    const room_id = "{{ room_id }}";
+    const user_name = "{{ username }}";
+    const owner = {% if owner %}true{% else %}false{% endif %};
+</script>
+<script src="{% static 'js/online_28/lobby.js' %}"></script>
 {% endblock js %}

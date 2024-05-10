@@ -19,7 +19,7 @@ def rules(request):
 
 
 def create_room(request):
-    if request.method == "POST":
+    if request.method == "POST" and request.user.is_authenticated:
 
         # Generate unique room id
         room_id = generate_room_id()
@@ -29,7 +29,7 @@ def create_room(request):
 
         # Create new Room object
         room = Room.objects.create(room_id=room_id, room_owner=user)
-        room.players.add(user)
+        room.team_a_players.add(user)
 
         return JsonResponse({
             "status": "success",
@@ -40,19 +40,27 @@ def create_room(request):
 
 
 def join_room(request, room_id):
-    if request.method == "POST":
+    if request.method == "POST" and request.user.is_authenticated:
 
         # Fetch current user
         user = User.objects.get(username=request.user.username)
         
         try:
-            # Check for the room object
+            # Fetch room from rom id
             room = Room.objects.get(room_id=room_id)
-            if room.players_count() <= 3:
-                room.players.add(user)
+
+            # check if any team having space
+            if room.team_a_players.count() <= 1:
+                room.team_a_players.add(user)
                 return JsonResponse({
                     "status": "success",
-                    "message": "Room joined"
+                    "message": "Team A joined"
+                })
+            elif room.team_b_players.count() <= 1:
+                room.team_b_players.add(user)
+                return JsonResponse({
+                    "status": "success",
+                    "message": "Team B joined"
                 })
             else:
                 return JsonResponse({
@@ -68,27 +76,10 @@ def join_room(request, room_id):
     return redirect("/online_28")
 
 
-def delete_room(request, room_id):
-    if request.method == "POST":
-        try:
-            # Check for the room object
-            room = Room.objects.get(room_id=room_id)
-            room.delete()
-
-            return JsonResponse({
-                "status": "fail",
-                "message": "Room delete successfully"
-            })
-        except Room.DoesNotExist:
-            return JsonResponse({
-                "status": "fail",
-                "message": "No such room exists"
-            })
-            
-    return redirect("/online_28")
-
-
 def room(request, room_id):
+
+    if not request.user.is_authenticated:
+        return redirect("/auth")
 
     # Fetch current user
     user = User.objects.get(username=request.user.username)
@@ -97,7 +88,11 @@ def room(request, room_id):
     try:
         room = Room.objects.get(room_id=room_id)
         if room.is_player_present(user):
-            return render(request, "online_28/lobby.html")
+            return render(request, "online_28/lobby.html", {
+                "room_id": room_id, 
+                "username": user.username,
+                "owner": room.is_room_owner(user)
+            })
         else:
             return HttpResponse("You are not the part of this room", status=404)
     except Room.DoesNotExist:
@@ -105,9 +100,26 @@ def room(request, room_id):
 
 
 def arena(request, room_id):
+
+    if not request.user.is_authenticated:
+        return redirect("/auth")
+
+    # Fetch current user
+    user = User.objects.get(username=request.user.username)
+
     # Retrieve room details from the database using room_id
     try:
-        room = Room.objects.get(pk=room_id)
-        return HttpResponse(f"Room Name: {room.name}, Capacity: {room.capacity}, Location: {room.location}")
+        room = Room.objects.get(room_id=room_id)
+        if room.is_player_present(user):
+            if room.game_started:
+                return render(request, "online_28/arena.html", {
+                    "room_id": room_id, 
+                    "team_name": "team_a" if room.team_a_players.filter(username=user.username).exists() else "team_b",
+                    "username": user.username,
+                })
+            else:
+                return HttpResponse("Game is not yet started for this room", status=404)
+        else:
+            return HttpResponse("You are not the part of this room", status=404)
     except Room.DoesNotExist:
-        return HttpResponse("Room not found", status=404)
+        return HttpResponse("No such room exists", status=404)

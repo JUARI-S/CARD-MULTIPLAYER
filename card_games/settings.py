@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'daphne',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -71,7 +72,14 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'card_games.wsgi.application'
+ASGI_APPLICATION = "card_games.asgi.application"
+# WSGI_APPLICATION = 'card_games.wsgi.application'
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels.layers.InMemoryChannelLayer'
+    }
+}
 
 
 # Database

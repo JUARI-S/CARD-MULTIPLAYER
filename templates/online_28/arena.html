@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_title %}Online 28{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/online_28/arena.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{% endblock %}
+
+{% block body %}
+<div class="online-28-arena-div">
+    <div id="online-28-arena-shuffler-waiting-window">Waiting for shuffler to select the seed ...</div>
+    <div id="online-28-arena-shuffler-window">
+        Choose any one of the seeds 
+        <div class="online-28-arena-shuffler-window-choice"></div>
+        <div class="online-28-arena-shuffler-window-choice"></div>
+        <div class="online-28-arena-shuffler-window-choice"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+    const room_id = "{{ room_id }}";
+    const user_name = "{{ username }}";
+    const team_name = "{{ team_name }}";
+    let shuffler;
+</script>
+<script src="{% static 'js/online_28/arena.js' %}"></script>
+{% endblock js %}
