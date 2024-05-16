@@ -10,12 +10,112 @@
 
 {% block body %}
 <div class="online-28-arena-div">
-    <div id="online-28-arena-shuffler-waiting-window">Waiting for shuffler to select the seed ...</div>
-    <div id="online-28-arena-shuffler-window">
-        Choose any one of the seeds 
-        <div class="online-28-arena-shuffler-window-choice"></div>
-        <div class="online-28-arena-shuffler-window-choice"></div>
-        <div class="online-28-arena-shuffler-window-choice"></div>
+    <div class="online-28-arena-game-pannel">
+        <div class="online-28-arena-game-cards">
+            <div class="online-28-arena-game-cards-section">
+                <div id="{{ opponent_1 }}-card" class="online-28-arena-game-opponent-card" style="background-image: url({% static 'images/cards/placeholder.svg' %});"></div>
+                <div class="online-28-arena-game-opponent-names">{{ opponent_1 }}</div>
+            </div>
+            <div class="online-28-arena-game-cards-section">
+                <div class="online-28-arena-game-names">{{ teammate }}</div>
+                <div id="{{ teammate }}-card" class="online-28-arena-game-team-card" style="background-image: url({% static 'images/cards/placeholder.svg' %});"></div>
+                <div id="{{ user_name }}-card" class="online-28-arena-game-team-card" style="background-image: url({% static 'images/cards/placeholder.svg' %});"></div>
+                <div class="online-28-arena-game-names">{{ username }}</div>
+            </div>
+            <div class="online-28-arena-game-cards-section">
+                <div id="{{ opponent_2 }}-card" class="online-28-arena-game-opponent-card" style="background-image: url({% static 'images/cards/placeholder.svg' %});"></div>
+                <div class="online-28-arena-game-opponent-names">{{ opponent_2 }}</div>
+            </div>
+        </div>
+        <div class="online-28-arena-player-cards">
+            <div class="online-28-arena-player-card player-card-inactive" style="background-image: url({% static 'images/cards/placeholder.svg' %});"></div>
+            <div class="online-28-arena-player-card player-card-inactive" style="background-image: url({% static 'images/cards/placeholder.svg' %});"></div>
+            <div class="online-28-arena-player-card player-card-inactive" style="background-image: url({% static 'images/cards/placeholder.svg' %});"></div>
+            <div class="online-28-arena-player-card player-card-inactive" style="background-image: url({% static 'images/cards/placeholder.svg' %});"></div>
+            <div class="online-28-arena-player-card player-card-inactive" style="background-image: url({% static 'images/cards/placeholder.svg' %});"></div>
+            <div class="online-28-arena-player-card player-card-inactive" style="background-image: url({% static 'images/cards/placeholder.svg' %});"></div>
+            <div class="online-28-arena-player-card player-card-inactive" style="background-image: url({% static 'images/cards/placeholder.svg' %});"></div>
+            <div class="online-28-arena-player-card player-card-inactive" style="background-image: url({% static 'images/cards/placeholder.svg' %});"></div>
+        </div>
+    </div>
+    <div class="online-28-arena-game-right-pannel">
+        <div class="online-28-arena-game-team-pannel">
+            <div class="online-28-arena-game-team-title">Team Info</div>
+            <div class="online-28-arena-game-team-section">
+                <div class="online-28-arena-game-team-info online-28-arena-game-my-team">
+                    <div>Team - {{ team_name }}</div>
+                    <div>Player 1 - {{ username }}</div>
+                    <div>Player 2 - {{ teammate }}</div>
+                    <div id="{{ team_name }}-points">Points - 0</div>
+                    <div id="{{ team_name }}-target-points">Target Points - 0</div>
+                </div>
+                <div class="online-28-arena-game-team-info">
+                    <div>Team - {{ opponent_team_name }}</div>
+                    <div>Opponent 1 - {{ opponent_1 }}</div>
+                    <div>Opponent 2 - {{ opponent_2 }}</div>
+                    <div id="{{ opponent_team_name }}-points">Points - 0</div>
+                    <div id="{{ opponent_team_name }}-target-points">Target Points - 0</div>
+                </div>
+            </div>
+        </div>
+        <div class="online-28-arena-game-stage-pannel">
+            <div id="online-28-arena-game-stage-title">Stage - </div>
+            <div class="online-28-arena-game-stage-window">
+                <div id="shuffler-waiting" class="online-28-arena-game-stage" style="display: none;">
+                    Waiting for shuffler to<br>select the seed ...
+                </div>
+                <div id="shuffler-seed-selection" class="online-28-arena-game-stage" style="display: none;">
+                    <div class="online-28-arena-shuffler-window-title">Choose any one of the seeds</div>
+                    <div class="online-28-arena-shuffler-window-seeds">
+                        <button class="online-28-arena-shuffler-window-choice" onclick="select_seed(1)">xxxxx</button>
+                        <button class="online-28-arena-shuffler-window-choice" onclick="select_seed(2)">xxxxx</button>
+                        <button class="online-28-arena-shuffler-window-choice" onclick="select_seed(3)">xxxxx</button>
+                    </div>
+                </div>
+                <div id="bid-info" class="online-28-arena-game-stage" style="display: none;">
+                    <div id="bid-info-bidder" class="online-28-arena-game-bid-info">Bidder -</div>
+                    <div id="bid-info-bid-value" class="online-28-arena-game-bid-info">Bid Value -</div>
+                    <div id="bid-info-bid-challenger" class="online-28-arena-game-bid-info">Challenger -</div>
+                </div>
+                <div id="bid-challenger" class="online-28-arena-game-stage" style="display: none;">
+                    <div id="bid-challenger-bidder" class="online-28-arena-game-bid-challenger">Bidder -</div>
+                    <div id="bid-challenger-bid-value" class="online-28-arena-game-bid-challenger">Bid Value -</div>
+                    <div class="online-28-arena-game-bid-challenger-action">
+                        <button onclick="bid_challenge()">Challenge</button>
+                        <button onclick="bid_pass()">Pass</button>
+                    </div>
+                </div>
+                <div id="trump-waiting" class="online-28-arena-game-stage" style="display: none;">
+                    Waiting for trump_Selecter to<br>select the seed ...
+                </div>
+                <div id="trump-selection" class="online-28-arena-game-stage" style="display: none;">
+                    <div class="online-28-arena-trump-selection-title">Choose any one of the trump suit</div>
+                    <div class="online-28-arena-trump-selection-action">
+                        <div class="online-28-arena-trump-selection-choice" onclick="select_trump(0)" style="background-image: url({% static 'images/cards/club_suit.png' %});"></div>
+                        <div class="online-28-arena-trump-selection-choice" onclick="select_trump(1)" style="background-image: url({% static 'images/cards/diamond_suit.png' %});"></div>
+                        <div class="online-28-arena-trump-selection-choice" onclick="select_trump(2)" style="background-image: url({% static 'images/cards/spade_suit.png' %});"></div>
+                        <div class="online-28-arena-trump-selection-choice" onclick="select_trump(3)" style="background-image: url({% static 'images/cards/heart_suit.png' %});"></div>
+                    </div>
+                </div>
+                <div id="game" class="online-28-arena-game-stage" style="display: none;">
+                    <div id="move-status"></div>
+                    <div id="trump-closed" style="display: none;">
+                        <div>
+                            <div >Trump is Closed</div>
+                            <div class="online-28-arena-trump-disclose trump-disclose-inactive" onclick="disclose_trump()">Disclose trump</div>
+                        </div>
+                    </div>
+                    <div id="trump-open" style="display: none;">
+                            <div >Trump is Disclosed</div>
+                            <div id="trump" class="online-28-arena-trump"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="online-28-arena-game-logs-pannel">
+            <div class="online-28-arena-game-logs-title">Game Logs</div>
+            <div id="online-28-arena-game-logs"></div>
+        </div>
     </div>
 </div>
 {% endblock %}
@@ -24,8 +124,10 @@
 <script type="text/javascript">
     const room_id = "{{ room_id }}";
     const user_name = "{{ username }}";
+    const owner = {% if owner %}true{% else %}false{% endif %};
     const team_name = "{{ team_name }}";
-    let shuffler;
+    let shuffler, bidder, bid_challenger, trump_selecter;
+    let curr_player = false;
 </script>
 <script src="{% static 'js/online_28/arena.js' %}"></script>
 {% endblock js %}

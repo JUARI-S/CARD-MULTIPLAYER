@@ -3,33 +3,334 @@
     height: 100%;
     position: relative;
 }
-#online-28-arena-shuffler-waiting-window {
+.online-28-arena-game-pannel {
     background-color: #ffffff83;
     overflow: hidden;
     position: absolute;
-    left: 24%;
-    top: 10%;
-    width: 50%;
-    height: 60%;
+    left: 2%;
+    top: 2%;
+    width: 65%;
+    height: 80%;
     padding: 2%;
-    font-size: xx-large;
     border-radius: 10px;
     display: grid;
     place-items: center; /* Horizontally and vertically center */
-    text-align: center;
 }
-#online-28-arena-shuffler-window {
+.online-28-arena-game-cards {
     background-color: #ffffff83;
     overflow: hidden;
     position: absolute;
-    left: 24%;
-    top: 10%;
-    width: 50%;
-    height: 60%;
-    padding: 2%;
-    font-size: x-large;
+    left: 11%;
+    top: 2%;
+    width: 78%;
+    height: 64%;
     border-radius: 10px;
-    display: none;
+    display: flex;
+    place-items: center; /* Horizontally and vertically center */
+    justify-content: center;
+}
+.online-28-arena-game-cards-section {
+    overflow: hidden;
+    position: relative;
+    width: 25%;
+    height: 90%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column; /* Align children vertically */
+    justify-content: center;
+    place-items: center; /* Horizontally and vertically center */
+}
+.online-28-arena-game-team-card {
+    margin: 1.5%;
+    overflow: hidden;
+    position: relative;
+    width: 50%;
+    height: 70%;
+    padding: 2%;
+    border-radius: 10px;
+    display: grid;
+    place-items: center; /* Horizontally and vertically center */
+    background-size: cover; /* Adjust background size */
+    background-position: center; /* Center the background image */
+    justify-content: center; /* Aligns items horizontally in the center */
+    align-items: center; /* Aligns items vertically in the center */
+}
+.online-28-arena-game-opponent-card {
+    margin: 1.5%;
+    overflow: hidden;
+    position: absolute;
+    top: 30%;
+    width: 45%;
+    height: 38%;
+    padding: 2%;
+    border-radius: 10px;
+    display: grid;
+    place-items: center; /* Horizontally and vertically center */
+    background-size: cover; /* Adjust background size */
+    background-position: center; /* Center the background image */
+    justify-content: center; /* Aligns items horizontally in the center */
+    align-items: center; /* Aligns items vertically in the center */
+}
+.online-28-arena-player-cards {
+    background-color: #ffffff83;
+    overflow: hidden;
+    position: absolute;
+    left: 4%;
+    top: 71%;
+    width: 88%;
+    height: 20%;
+    padding: 2%;
+    border-radius: 10px;
+    display: flex;
+    place-items: center; /* Horizontally and vertically center */
+}
+.online-28-arena-player-card {
+    background-color: #ffffff83;
+    margin: 1.5%;
+    overflow: hidden;
+    position: relative;
+    width: 10%;
+    height: 70%;
+    padding: 2%;
+    border-radius: 5px;
+    display: grid;
+    place-items: center; /* Horizontally and vertically center */
+    background-size: cover; /* Adjust background size */
+    background-position: center; /* Center the background image */
+    justify-content: center; /* Aligns items horizontally in the center */
+    align-items: center; /* Aligns items vertically in the center */
+}
+.player-card-inactive {
+    background-color: rgb(133, 132, 132);
+    cursor: not-allowed;
+}
+.player-card-active {
+    background-color: white;
+    cursor: pointer;
+}
+.online-28-arena-game-names {
+    position: relative;
+}
+.online-28-arena-game-opponent-names {
+    position: absolute;
+    top: 72%;
+}
+.online-28-arena-game-right-pannel {
+    overflow:hidden;
+    position: absolute;
+    left: 73%;
+    top: 2%;
+    width: 25%;
+    height: 88%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    place-items: center; /* Horizontally and vertically center */
+}
+.online-28-arena-game-team-pannel {
+    background-color: #ffffff83;
+    overflow:hidden;
+    position: absolute;
+    width: 100%;
+    height: 20%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    place-items: center; /* Horizontally and vertically center */
+}
+.online-28-arena-game-team-title {
+    padding: 1%;
+    background-color: #515151eb;
+    color: white;
+    height: 15%;
+    width: 100%;
+    text-align: center;
+}
+.online-28-arena-game-team-section {
+    padding: 1% 5%;
+    display: flex;
+    width: 90%;
+}
+.online-28-arena-game-team-info {
+    padding: 1%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    place-items: center; /* Horizontally and vertically center */
+}
+.online-28-arena-game-my-team {
+    background-color: #caff86eb;
+    border-radius: 10px;
+}
+.online-28-arena-game-stage-pannel {
+    background-color: #ffffff83;
+    overflow:hidden;
+    position: absolute;
+    top: 22%;
+    width: 100%;
+    height: 44%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    place-items: center; /* Horizontally and vertically center */
+}
+#online-28-arena-game-stage-title {
+    padding: 1%;
+    background-color: #515151eb;
+    color: white;
+    height: 8%;
+    width: 100%;
+    text-align: center;
+}
+.online-28-arena-game-stage-window {
+    display: flex;
+    width: 100%;
+    height: 90%;
+}
+.online-28-arena-game-stage {
+    width: 100%;
+    height: 90%;
+    position: absolute;
+    display: grid;
+    font-size: x-large;
     place-items: center; /* Horizontally and vertically center */
     text-align: center;
+}
+.online-28-arena-shuffler-window-title {
+    text-align: center;
+    font-size: x-large;
+}
+.online-28-arena-shuffler-window-seeds {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+}
+.online-28-arena-shuffler-window-choice {
+    padding: 3%;
+    border: none;
+    border-radius: 5px;
+    background-color: #dcab24;
+    color: #fff;
+    text-align: center;
+    font-size: x-large;
+    cursor: pointer;
+}
+.online-28-arena-shuffler-window-choice:hover {
+    padding: 3%;
+    border: none;
+    border-radius: 5px;
+    background-color: #dca40a;
+    color: #fff;
+    text-align: center;
+    font-size: x-large;
+    cursor: pointer;
+}
+.online-28-arena-game-bid-challenger-action {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+}
+.online-28-arena-game-bid-challenger-action button {
+    padding: 3%;
+    border: none;
+    border-radius: 5px;
+    background-color: #dcab24;
+    color: #fff;
+    text-align: center;
+    font-size: x-large;
+    cursor: pointer;
+}
+.online-28-arena-game-bid-challenger-action button:hover {
+    padding: 3%;
+    border: none;
+    border-radius: 5px;
+    background-color: #dca40a;
+    color: #fff;
+    text-align: center;
+    font-size: x-large;
+    cursor: pointer;
+}
+.online-28-arena-trump-selection-title {
+    text-align: center;
+    font-size: x-large;
+}
+.online-28-arena-trump-selection-action {
+    display: flex;
+    width: 80%;
+    height: 60%;
+    justify-content: space-between;
+}
+.online-28-arena-trump-selection-choice {
+    width: 20%;
+    height: 100%;
+    display: grid;
+    cursor: pointer;
+    place-items: center; /* Horizontally and vertically center */
+    background-size: cover; /* Adjust background size */
+    background-position: center; /* Center the background image */
+    justify-content: center; /* Aligns items horizontally in the center */
+    align-items: center; /* Aligns items vertically in the center */
+}
+.online-28-arena-trump{
+    margin-bottom: 5%;
+    margin-top: 5%;
+    width: 25%;
+    height: 80%;
+    display: grid;
+    background-size: cover; /* Adjust background size */
+    background-position: center; /* Center the background image */
+    justify-content: center; /* Aligns items horizontally in the center */
+    align-items: center; /* Aligns items vertically in the center */
+}
+#trump-open {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    height: 100%;
+    justify-content: center;
+}
+.online-28-arena-trump-disclose {
+    margin-top: 10%;
+    padding: 3%;
+    border: none;
+    border-radius: 5px;
+    background-color: #dcab24;
+    color: #fff;
+    text-align: center;
+    font-size: x-large;
+    cursor: pointer;
+}
+.trump-disclose-inactive {
+    background-color: #b48e28;
+    cursor: not-allowed;
+}
+.online-28-arena-game-logs-pannel {
+    background-color: #ffffff83;
+    overflow:hidden;
+    position: absolute;
+    top: 68%;
+    width: 100%;
+    height: 32%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    place-items: center; /* Horizontally and vertically center */
+}
+.online-28-arena-game-logs-title {
+    padding: 1%;
+    background-color: #515151eb;
+    color: white;
+    height: 10%;
+    width: 100%;
+    text-align: center;
+}
+#online-28-arena-game-logs {
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.online-28-arena-game-log {
+    margin-left: 2%;
+    width: 100%;
 }

@@ -112,11 +112,28 @@ def arena(request, room_id):
         room = Room.objects.get(room_id=room_id)
         if room.is_player_present(user):
             if room.game_started:
-                return render(request, "online_28/arena.html", {
-                    "room_id": room_id, 
-                    "team_name": "team_a" if room.team_a_players.filter(username=user.username).exists() else "team_b",
-                    "username": user.username,
-                })
+                if room.team_a_players.filter(username=user.username).exists():
+                    return render(request, "online_28/arena.html", {
+                        "room_id": room_id, 
+                        "username": user.username,
+                        "team_name": "team_a",
+                        "teammate": room.get_team_a_players()[1] if room.get_team_a_players()[0] == user.username else room.get_team_a_players()[0],
+                        "opponent_team_name": "team_b",
+                        "opponent_1": room.get_team_b_players()[0],
+                        "opponent_2": room.get_team_b_players()[1],
+                        "owner": room.is_room_owner(user)
+                    })
+                else:
+                    return render(request, "online_28/arena.html", {
+                        "room_id": room_id, 
+                        "username": user.username,
+                        "team_name": "team_b",
+                        "teammate": room.get_team_b_players()[1] if room.get_team_b_players()[0] == user.username else room.get_team_b_players()[0],
+                        "opponent_team_name": "team_a",
+                        "opponent_1": room.get_team_a_players()[0],
+                        "opponent_2": room.get_team_a_players()[1],
+                        "owner": room.is_room_owner(user)
+                    })
             else:
                 return HttpResponse("Game is not yet started for this room", status=404)
         else:
