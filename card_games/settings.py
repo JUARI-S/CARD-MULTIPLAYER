@@ -23,10 +23,10 @@ TEMPLATES_DIR = os.path.join(BASE_DIR,'templates')
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-@bl(7vbsy7(9=kkq^bwi#x-y=x@x=rzd4ld!7vbp2s@t#x0c3$'
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = True # os.environ.get("DEBUG", "False").lower() == "true"
 
 ALLOWED_HOSTS = []
 
@@ -76,12 +76,14 @@ TEMPLATES = [
 ]
 
 ASGI_APPLICATION = "card_games.asgi.application"
-# WSGI_APPLICATION = 'card_games.wsgi.application'
 
 CHANNEL_LAYERS = {
     'default': {
-        'BACKEND': 'channels.layers.InMemoryChannelLayer'
-    }
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [("rediss://red-cp3l28ol6cac73f7ra8g:tVm4MjNuawEeXL8fT4pFdryV3rlmvmxy@frankfurt-redis.render.com", 6379)],  # Update this to your Redis server configuration
+        },
+    },
 }
 
 
@@ -89,13 +91,13 @@ CHANNEL_LAYERS = {
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config(
-        # Replace this value with your local database's connection string.
-        default='postgresql://postgres:postgres@localhost:5432/mysite',
-        conn_max_age=600
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
 
+DATABASES["default"] = dj_database_url.parse("postgres://card_games:F84o8FOJAFZTez1L0FPYXAeovBK4hEgH@dpg-cp3kv07sc6pc73fr1td0-a.oregon-postgres.render.com/card_games_1b8f")
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
