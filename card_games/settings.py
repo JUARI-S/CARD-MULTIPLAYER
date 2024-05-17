@@ -97,7 +97,8 @@ DATABASES = {
     }
 }
 
-DATABASES["default"] = dj_database_url.parse("postgres://card_games:F84o8FOJAFZTez1L0FPYXAeovBK4hEgH@dpg-cp3kv07sc6pc73fr1td0-a.oregon-postgres.render.com/card_games_1b8f")
+if not DEBUG:
+    DATABASES["default"] = dj_database_url.parse("postgres://card_games:F84o8FOJAFZTez1L0FPYXAeovBK4hEgH@dpg-cp3kv07sc6pc73fr1td0-a/card_games_1b8f")
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
