@@ -55,11 +55,3 @@ class Room(models.Model):
     
     def get_team(self, player_name):
         return "team_a" if self.team_a_players.filter(username=player_name).exists() else "team_b"
-
-# class Game(models.Model):
-#     room = models.ForeignKey(Room, on_delete=models.CASCADE)
-#     teamA = models.ForeignKey(Team, on_delete=models.CASCADE, related_name='team_a')
-#     teamB = models.ForeignKey(Team, on_delete=models.CASCADE, related_name='team_b')
-
-#     def __str__(self):
-#         return self.name
