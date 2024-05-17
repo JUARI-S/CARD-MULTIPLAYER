@@ -86,6 +86,7 @@ CHANNEL_LAYERS = {
     },
 }
 
+CSRF_TRUSTED_ORIGINS = ['https://*.card-games-gi3w.onrender.com','https://*.127.0.0.1']
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
