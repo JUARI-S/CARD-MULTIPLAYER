@@ -10,7 +10,7 @@ const Stages = Object.freeze({
 });
 
 // Create Websocket url
-let url = `ws://${window.location.host}/ws/online_28/arena?${room_id}`;
+let url = `wss://${window.location.host}/ws/online_28/arena?${room_id}`;
 
 let cards = [
     {suit: 'club', number: '9'},
