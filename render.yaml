@@ -1,0 +1,22 @@
+databases:
+  - name: card_games
+    plan: free
+    databaseName: card_games
+    user: card_games
+
+services:
+  - type: web
+    plan: free
+    name: card_games
+    runtime: python
+    buildCommand: "./build.sh"
+    startCommand: "python -m gunicorn mysite.asgi:application -k uvicorn.workers.UvicornWorker"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: card_games
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: WEB_CONCURRENCY
+        value: 4
