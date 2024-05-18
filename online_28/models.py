@@ -24,12 +24,15 @@ class Room(models.Model):
 
     # Game variables
     trump = models.CharField(default="none", max_length=200)
-    round_player = models.CharField(default="none", max_length=200)
-    curr_player = models.CharField(default="none", max_length=200)
     team_a_points = models.IntegerField(default=0)
     team_a_target = models.IntegerField(default=0)
     team_b_points = models.IntegerField(default=0)
     team_b_target = models.IntegerField(default=0)
+
+    # Round variables
+    round_player_index = models.IntegerField(default=0)
+    curr_player_index = models.IntegerField(default=0)
+    card_played = models.TextField(default="[]")
 
     def __str__(self):
         return self.room_id

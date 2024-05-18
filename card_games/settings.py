@@ -84,12 +84,17 @@ ASGI_APPLICATION = "card_games.asgi.application"
 
 CHANNEL_LAYERS = {
     'default': {
+        'BACKEND': 'channels.layers.InMemoryChannelLayer'
+    },
+}
+
+if not DEBUG:
+    CHANNEL_LAYERS["default"] = {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
             "hosts": [(os.environ.get("REDIS_URL"))],
         },
-    },
-}
+    }
 
 CSRF_TRUSTED_ORIGINS = os.environ.get("CSRF_TRUSTED_ORIGINS").split(" ")
 
@@ -152,11 +157,6 @@ if not DEBUG:
     # Enable the WhiteNoise storage backend, which compresses static files to reduce disk use
     # and renames the files with unique names for each version to support long-term caching
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-
-# HTTPS
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-SECURE_SSL_REDIRECT = True
 
 
 # Default primary key field type

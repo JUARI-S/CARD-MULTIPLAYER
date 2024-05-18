@@ -506,8 +506,9 @@ class GameConsumer(WebsocketConsumer):
                     if data["trump_suit_index"] <= 3 and data["trump_suit_index"] >= 0:
                         # set the room trump
                         self.room.trump = self.suits[data["trump_suit_index"]]
-                        self.room.round_player = self.username
-                        self.room.curr_player = self.username
+                        player_index = self.queue.index(self.username)
+                        self.room.round_player_index = player_index
+                        self.room.curr_player_index = player_index
 
                         # Distribute all the cards
                         for player, data in get_cards(self.room).items():
@@ -544,7 +545,7 @@ class GameConsumer(WebsocketConsumer):
                                 'type': 'game_info',
                                 'game_info': {
                                     'curr_player': self.username,
-                                    'cards_played': []
+                                    'cards_played': json.loads(self.room.card_played)
                                 }
                             }
                         )
@@ -562,6 +563,65 @@ class GameConsumer(WebsocketConsumer):
                 self.send(text_data = json.dumps({
                     'type': 'error',
                     'message': 'Only Trump selecter can select the trump'
+                })) 
+        elif data["type"] == "play_card":
+            # check if current player is this user
+            if self.username == self.queue[self.room.curr_player_index]:
+                # check validity of card played
+                card = data["card"]
+                cards_played = json.loads(self.room.card_played)
+                if self.valid_card(card, cards_played):
+
+                    # update the playing cards
+                    card["player_name"] = self.username
+                    cards_played.append(card)
+                    
+                    # update current player index
+                    curr_player_index = (self.room.curr_player_index + 1) % 4
+
+                    # check is round finished or not
+                    if curr_player_index == self.room.round_player_index :
+                        # check who wins the round
+                        # upadte room vaiables
+                        self.room.curr_player_index = curr_player_index
+                        self.room.card_played = json.dumps(cards_played)
+
+                        # Tell players about the current player
+                        async_to_sync(self.channel_layer.group_send)(
+                            self.room.room_id,
+                            {
+                                'type': 'game_info',
+                                'game_info': {
+                                    'curr_player': self.queue[curr_player_index],
+                                    'cards_played': []
+                                }
+                            }
+                        )
+                    else:
+                        # upadte room vaiables
+                        self.room.curr_player_index = curr_player_index
+                        self.room.card_played = json.dumps(cards_played)
+
+                        # Tell players about the current player
+                        async_to_sync(self.channel_layer.group_send)(
+                            self.room.room_id,
+                            {
+                                'type': 'game_info',
+                                'game_info': {
+                                    'curr_player': self.queue[curr_player_index],
+                                    'cards_played': cards_played
+                                }
+                            }
+                        )
+                else:
+                    self.send(text_data = json.dumps({
+                        'type': 'error',
+                        'message': 'Invalid card played'
+                    })) 
+            else:
+                self.send(text_data = json.dumps({
+                    'type': 'error',
+                    'message': 'Only Current player can put card'
                 })) 
         else:
             pass
@@ -612,6 +672,12 @@ class GameConsumer(WebsocketConsumer):
             'type': 'game_info',
             'game_info': info
         }))
+
+    '''
+    This function broadcast game information cards played, current player
+    '''
+    def valid_card(self, card, cards_played):
+        return True
 
     '''
     Fetch any updates in the models

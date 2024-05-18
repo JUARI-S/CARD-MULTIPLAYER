@@ -1,5 +1,6 @@
 // Create Websocket url
-let url = `wss://${window.location.host}/ws/online_28/lobby?${room_id}`;
+const websocket_protocol = window.location.protocol == "http:" ? "ws" : "wss"
+let url = `${websocket_protocol}://${window.location.host}/ws/online_28/lobby?${room_id}`;
 
 // Connect with the websocket
 const lobbySocket = new WebSocket(url);

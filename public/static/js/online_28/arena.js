@@ -10,7 +10,8 @@ const Stages = Object.freeze({
 });
 
 // Create Websocket url
-let url = `wss://${window.location.host}/ws/online_28/arena?${room_id}`;
+const websocket_protocol = window.location.protocol == "http:" ? "ws" : "wss"
+let url = `${websocket_protocol}://${window.location.host}/ws/online_28/arena?${room_id}`;
 
 let cards = [
     {suit: 'club', number: '9'},
@@ -91,10 +92,10 @@ gameSocket.onmessage = function(e) {
             const cards_played = data.game_info.cards_played;
             if(user_name == curr_player_name) {
                 document.getElementById("move-status").innerHTML = `Your's Move`;
-                update_playing_cards_state(cards_played);
+                update_playing_cards_state(true, cards_played);
             } else {
                 document.getElementById("move-status").innerHTML = `${curr_player_name} Move`;
-                update_playing_cards_state(cards_played);
+                update_playing_cards_state(false, cards_played);
             }
         case "error":
             add_log(`[ERROR] : ${data.message}`);
@@ -164,18 +165,65 @@ function update_stage(stage_name, extras) {
     }
 }
 
-function update_playing_cards_state(cards_played) {
+function update_playing_cards_state(curr_player, cards_played) {
+    // Update cards played on board
+    cards_played.forEach((card_info) => {
+        const player_name = card_info.player_name;
+        document.getElementById(`${player_name}-card`).style.backgroundImage = `url(/static/images/cards/${card_info.suit}/${card_info.number}.png)`;
+    });
 
-}
+    // Update player cards
+    Array.from(document.getElementsByClassName("online-28-arena-player-card")).forEach(cardDiv => {
+        if(curr_player && cardDiv.classList.contains("card-available")) {
 
-function update_cards(cards) {
-    // update playing cards
+            // Extract card information
+            const card_info = cardDiv.card_info;
+
+            // Check if card is playable
+            if (is_playable_card(card_info, cards_played)) {
+
+                // Set card active
+                cardDiv.classList.remove("player-card-inactive");
+
+                // Set card onclick listner
+                cardDiv.onclick = function() {
+                    // send card played information to server
+                    gameSocket.send(JSON.stringify({
+                        'type': 'play_card',
+                        'card': card_info
+                    }));
+
+                    // remove that card from the deck
+                    cardDiv.classList.remove("card-available");
+                    cardDiv.classList.add("player-card-inactive");
+                    cardDiv.card_info = {};
+                    cardDiv.style.backgroundImage = "url(/static/images/cards/placeholder.svg)";
+                    cardDiv.onclick = function() {
+                        console.log("Card unavailable");
+                    }
+                }
+            }
+        } else {
+            // make card inactive
+            cardDiv.classList.add("player-card-inactive");
+            cardDiv.onclick = function() {
+                console.log("Card unavailable");
+            }
+        }
+    });
 }
 
 function update_my_deck(cards) {
     // update my deck
     const deck_cards_div = document.getElementsByClassName("online-28-arena-player-card");
     cards.forEach(function(card, index) {
+        // make that card available
+        deck_cards_div[index].classList.add('card-available');
+
+        // Add card information
+        deck_cards_div[index].card_info = card;
+        
+        // Update the image of card
         deck_cards_div[index].style.backgroundImage = `url(/static/images/cards/${card.suit}/${card.number}.png)`;
     });
 }
@@ -222,13 +270,14 @@ function disclose_trump() {
     }
 }
 
-function play_card(card) {
-    if(curr_player) {
-        gameSocket.send(JSON.stringify({
-            'type': 'play_card',
-            'card': card
-        }));
+// Function to check can current card be played with the card played previously in the deck
+function is_playable_card(card, card_played) {
+    if(card_played.length == 0) {
+        return true;
     }
+    return true;
+
+    // play card
 }
 
 function add_log(message) {

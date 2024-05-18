@@ -99,14 +99,11 @@
     background-position: center; /* Center the background image */
     justify-content: center; /* Aligns items horizontally in the center */
     align-items: center; /* Aligns items vertically in the center */
+    cursor: pointer;
 }
 .player-card-inactive {
     background-color: rgb(133, 132, 132);
     cursor: not-allowed;
-}
-.player-card-active {
-    background-color: white;
-    cursor: pointer;
 }
 .online-28-arena-game-names {
     position: relative;
