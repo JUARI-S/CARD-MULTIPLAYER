@@ -14,6 +14,11 @@ from pathlib import Path
 import os
 import dj_database_url
 
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -81,12 +86,12 @@ CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            "hosts": [("rediss://red-cp3l28ol6cac73f7ra8g:tVm4MjNuawEeXL8fT4pFdryV3rlmvmxy@frankfurt-redis.render.com", 6379)],  # Update this to your Redis server configuration
+            "hosts": [(os.environ.get("REDIS_URL"))],
         },
     },
 }
 
-CSRF_TRUSTED_ORIGINS = ['https://*.card-games-gi3w.onrender.com','https://*.127.0.0.1']
+CSRF_TRUSTED_ORIGINS = os.environ.get("CSRF_TRUSTED_ORIGINS").split(" ")
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
@@ -99,7 +104,7 @@ DATABASES = {
 }
 
 if not DEBUG:
-    DATABASES["default"] = dj_database_url.parse("postgres://card_games:F84o8FOJAFZTez1L0FPYXAeovBK4hEgH@dpg-cp3kv07sc6pc73fr1td0-a/card_games_1b8f")
+    DATABASES["default"] = dj_database_url.parse(os.environ.get("DATABASE_URL"))
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -147,6 +152,11 @@ if not DEBUG:
     # Enable the WhiteNoise storage backend, which compresses static files to reduce disk use
     # and renames the files with unique names for each version to support long-term caching
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+
+# HTTPS
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_SSL_REDIRECT = True
 
 
 # Default primary key field type

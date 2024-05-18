@@ -12,9 +12,20 @@ services:
     buildCommand: "./build.sh"
     startCommand: "python -m daphne -b 0.0.0.0 card_games.asgi:application"
     envVars:
+      - key: ALLOWED_HOSTS
+        value: card-games-gi3w.onrender.com
+      - key: CSRF_TRUSTED_ORIGINS
+        value: https://*.card-games-gi3w.onrender.com
       - key: DATABASE_URL
         fromDatabase:
           name: card_games
+          property: connectionString
+      - key: DEBUG
+        value: false
+      - key: REDIS_URL
+        fromDatabase:
+          name: card_games
+          typo: Redis
           property: connectionString
       - key: SECRET_KEY
         generateValue: true
